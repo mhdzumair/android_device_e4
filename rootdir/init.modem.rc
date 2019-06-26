@@ -3,6 +3,7 @@
 # IMPORTANT: Do not create world writable files or directories.
 # This is a common source of Android security bugs.
 #
+   
 on post-fs-data
 
     write /proc/bootprof "post-fs-data: on modem start"

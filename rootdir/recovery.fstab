@@ -32,4 +32,3 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/tee1 /tee1 emmc defaults defaults
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/tee2 /tee2 emmc defaults defaults
 #/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/preload /preload ext4 ro wait
-

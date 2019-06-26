@@ -16,8 +16,8 @@
     <item name="radio.scanning">21</item>
     <item name="gps.on">34</item>
     <array name="radio.on">
-        <value>10</value>
-        <value>10</value>
+        <value>2</value>
+        <value>1</value>
     </array>
     <array name="cpu.speeds">
         <value>299000</value>
