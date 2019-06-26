@@ -17,7 +17,6 @@
 
 package org.lineageos.hardware;
 
-import android.util.Log;
 /*
  * Disable capacitive keys
  *
@@ -29,20 +28,19 @@ import android.util.Log;
 
 public class KeyDisabler {
 
-    private static boolean isActive = false;
     /*
      * All HAF classes should export this boolean.
      * Real implementations must, of course, return true
      */
 
-    public static boolean isSupported() { return true; }
+    public static boolean isSupported() { return false; }
 
     /*
      * Are the keys currently blocked?
      */
 
     public static boolean isActive() {
-        return isActive;
+        return false;
     }
 
     /*
@@ -50,10 +48,7 @@ public class KeyDisabler {
      */
 
     public static boolean setActive(boolean state) {
-        //throw new UnsupportedOperationException();
-        isActive = state;
-        Log.i("KeyDisabler", "setActive " + state);
-        return isActive;
+        throw new UnsupportedOperationException();
     }
 
 }

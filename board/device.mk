@@ -4,3 +4,5 @@ USE_MINIKIN := true
 
 # Configure jemalloc for low memory
 MALLOC_SVELTE := true
+
+BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness

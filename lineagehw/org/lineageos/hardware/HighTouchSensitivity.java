@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2016 The CyanogenMod Project
- * Copyright (C) 2017 The LineageOS Project
+ * Copyright (C) 2013 Xiao-Long Chen <chenxiaolong@cxl.epac.to>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,23 +16,17 @@
 
 package org.lineageos.hardware;
 
-import org.lineageos.internal.util.FileUtils;
-
 /**
  * Glove mode / high touch sensitivity
  */
 public class HighTouchSensitivity {
-
-    private static String GLOVE_PATH = "/sys/lenovo_tp_gestures/tpd_glove_status";
 
     /**
      * Whether device supports high touch sensitivity.
      *
      * @return boolean Supported devices must return always true
      */
-    public static boolean isSupported() {
-        return FileUtils.isFileWritable(GLOVE_PATH);
-    }
+    public static boolean isSupported() { return false; }
 
     /**
      * This method return the current activation status of high touch sensitivity
@@ -41,12 +34,7 @@ public class HighTouchSensitivity {
      * @return boolean Must be false if high touch sensitivity is not supported or not activated,
      * or the operation failed while reading the status; true in any other case.
      */
-    public static boolean isEnabled() {
-        int i;
-        i = Integer.parseInt(FileUtils.readOneLine(GLOVE_PATH));
-
-        return i == 1 ? true : false;
-    }
+    public static boolean isEnabled() { return false; }
 
     /**
      * This method allows to setup high touch sensitivity status.
@@ -55,8 +43,6 @@ public class HighTouchSensitivity {
      * @return boolean Must be false if high touch sensitivity is not supported or the operation
      * failed; true in any other case.
      */
-    public static boolean setEnabled(boolean status) {
-        return FileUtils.writeLine(GLOVE_PATH, String.valueOf(status ? 1 : 0));
-    }
+    public static boolean setEnabled(boolean status) { return false; }
 
-} 
+}

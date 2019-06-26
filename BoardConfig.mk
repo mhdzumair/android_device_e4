@@ -91,6 +91,15 @@ include device/moto/e4/board/*.mk
 TARGET_KMODULES := true
 BOARD_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 
+# Dont build seperate vendor img
+TARGET_COPY_OUT_VENDOR := system/vendor
+
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
+#######################################################################
+
+BOARD_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
+
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
 
@@ -166,6 +175,13 @@ WIFI_DRIVER_STATE_OFF := 0
 USE_MINIKIN := true
 #MALLOC_IMPL := dlmalloc
 
+# LDPRELOAD
+TARGET_LDPRELOAD += libmtk_symbols.so
+
+# EGL
+BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
+USE_OPENGL_RENDERER := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
 
 # Flags
 BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
@@ -238,8 +254,30 @@ BOARD_SECCOMP_POLICY += device/moto/e4/seccomp
 #HIDL
 DEVICE_MANIFEST_FILE := device/moto/e4/hidl/manifest.xml
 
+
+# Platform
+TARGET_BOARD_PLATFORM := mt6735m
+TARGET_NO_BOOTLOADER := true
+TARGET_BOOTLOADER_BOARD_NAME := mt6735m
+
+# Legacy blobs
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+
+# Images
+TARGET_NO_BOOTLOADER := true
+
+# HIDL
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
+
 # System.prop
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+
+# Shims
+TARGET_LD_SHIM_LIBS := /system/lib/libgui.so|/system/vendor/lib/libmtkshim_gui.so:/system/lib64/libgui.so|/system/vendor/lib64/libmtkshim_gui.so:/system/vendor/lib/hw/audio.primary.mt6735m.so|/system/vendor/lib/libmtkshim_audio.so:/system/vendor/lib64/hw/audio.primary.mt6735m.so|/system/vendor/lib64/libmtkshim_audio.so:/system/vendor/lib/libcam.camadapter.so|/system/vendor/lib/libmtkshim_camera.so:/system/vendor/lib64/libcam.camadapter.so|/system/vendor/lib64/libmtkshim_camera.so
+
+# SELinux
+SELINUX_IGNORE_NEVERALLOWS := true
+BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
 
 # Block based ota
 # see http://review.cyanogenmod.org/#/c/78849/1/core/Makefile
