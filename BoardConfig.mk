@@ -1,6 +1,8 @@
 # inherit from the proprietary version
 -include vendor/moto/e4/BoardConfigVendor.mk
 
+LOCAL_PATH := device/moto/e4
+
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Architecture
